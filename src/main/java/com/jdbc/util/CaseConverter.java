@@ -1,14 +1,13 @@
 package com.jdbc.util;
 
-import java.lang.reflect.Field;
-
 public class CaseConverter {
     private static final String UNDER_BAR = "_";
 
-    private CaseConverter() { }
+    private CaseConverter() {
+    }
 
-    public static String toSnakeCase(Field field) {
-        char[] chars = extractCharArray(field);
+    public static String toSnakeCase(Class<?> from) {
+        char[] chars = extractCharArray(from);
 
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(Character.toLowerCase(chars[0]));
@@ -20,11 +19,11 @@ public class CaseConverter {
             stringBuilder.append(Character.toLowerCase(chars[i]));
         }
 
-        return stringBuilder.toString();
+        return stringBuilder.toString() + "s";
     }
 
-    private static char[] extractCharArray(Field field) {
-        String name = field.getName();
+    private static char[] extractCharArray(Class<?> from) {
+        String name = from.getSimpleName();
         return name.toCharArray();
     }
 }
