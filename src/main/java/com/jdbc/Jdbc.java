@@ -11,6 +11,9 @@ public class Jdbc {
     private static final String user = "root";
     private static String password = "root1234!";
 
+    private Jdbc() {
+    }
+
     public static void insert(String sql) {
         try (Connection connection = DriverManager.getConnection(url, user, password);
              PreparedStatement preparedStatement = connection.prepareStatement(sql);
